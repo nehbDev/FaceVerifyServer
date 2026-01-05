@@ -7,6 +7,7 @@ import requests
 from PIL import Image
 import io
 import base64
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -151,5 +152,10 @@ def verify_images():
             "error": str(e)
         }), 500
 
+#if __name__ == '__main__':
+    #app.run(host='192.168.11.218', port=5000, debug=False)  # debug=False for better performance
+
 if __name__ == '__main__':
-    app.run(host='192.168.11.218', port=5000, debug=False)  # debug=False for better performance
+    host = '0.0.0.0'
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host=host, port=port)
